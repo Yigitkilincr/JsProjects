@@ -16,15 +16,7 @@ html {
         opacity: 100%;
     }
   }
-input{
-    background-color: #251D3A;
-    color: white;
-    text-align: center;
-    border-radius: 50px;
-    font-size: 2rem;
-    width: 78vw;
-    margin-bottom: 1rem;
-}
+
 .container{
     margin: auto;
     text-align: center;
@@ -71,4 +63,22 @@ button{
         color: rgba(52, 73, 94, 1.0);
         background-color: rgba(236, 240, 241, 1.0);
     }
+}
+
+.output {
+    height: 80px;
+    background-color: #C4DDFF;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+.previous{
+    color: #251D3A;
+    font-size: 1rem;
+}
+.current{
+    color: #251D3A;
+    font-size: 1.75rem;
 }

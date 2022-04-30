@@ -12,40 +12,45 @@
     <script src="https://kit.fontawesome.com/026ea25ec4.js" crossorigin="anonymous"></script>
     <div class="container">
         <div class="calculator">
-            <input type="text" name="screen" id="answer" readonly>
+            <div class="output">
+                <div data-previous class="previous"></div>
+                <div data-current class="current"></div>
+            </div>
+            
             <!-- Calc table start -->
             <table>
                 <tr>
-                    <td><button>%</button></td>
-                    <td><button style="background-color: red; font-weight: bold; color: white;">CE</button></td>
-                    <td><button style="background-color: blue; font-weight: bold; color:white">C</button></td>
-                    <td><button><i class="fas fa-backspace"></i></button></td>
+                    <td><button data-oparation>%</button></td>
+                    <td><button data-all-clear style="background-color: red; font-weight: bold; color: white;">CE</button></td>
+                    <td><button data-all-clear style="background-color: blue; font-weight: bold; color:white">C</button></td>
+                    <td><button data-delete><i class="fas fa-backspace"></i></button></td>
                 </tr>
                 <tr>
-                    <td><button>7</button></td>
-                    <td><button>8</button></td>
-                    <td><button>9</button></td>
-                    <td><button>x</button></td>
+                    <td><button data-number>7</button></td>
+                    <td><button data-number>8</button></td>
+                    <td><button data-number>9</button></td>
+                    <td><button data-oparation>x</button></td>
                 </tr>
                 <tr>
-                    <td><button>4</button></td>
-                    <td><button>5</button></td>
-                    <td><button>6</button></td>
-                    <td><button>-</button></td>
+                    <td><button data-number>4</button></td>
+                    <td><button data-number>5</button></td>
+                    <td><button data-number>6</button></td>
+                    <td><button data-oparation>-</button></td>
                 </tr>
                 <tr>
-                    <td><button>1</button></td>
-                    <td><button>2</button></td>
-                    <td><button>3</button></td>
-                    <td><button>+</button></td>
+                    <td><button data-number>1</button></td>
+                    <td><button data-number>2</button></td>
+                    <td><button data-number>3</button></td>
+                    <td><button data-oparation>+</button></td>
                 </tr>
                 <tr>
-                    <td><button>0</button></td>
-                    <td><button>,</button></td>
-                    <td><button>÷</button></td>
-                    <td><button style="background-color: aqua; font-weight: bold; color: black;">=</button></td>
+                    <td><button data-number>0</button></td>
+                    <td><button data-number>.</button></td>
+                    <td><button data-oparation>÷</button></td>
+                    <td><button data-equals style="background-color: aqua; font-weight: bold; color: black;">=</button></td>
                 </tr>
             </table>
+            
             <!-- Calc table end -->
         </div>
     </div>

@@ -1,31 +1,130 @@
 console.log("My First Js Project...")
 
-document.getElementById("answer").readOnly = true
-let screen = getElementById("answer");
-buttons = document.querySelectorAll("button");
-let screenValue = "";
-for (item of buttons) {
-    item.addEventListener("click", (a) => {
-        buttontext = a.target.innerText;
-        if (buttontext == "X") {
-            buttontext = "*";
-            screenValue += buttontext;
-            screen.value = screenValue;
+class Calculator{
+    constructor(previousTextElement, CurrentTextElement) {
+        this.previousTextElement = previousTextElement
+        this.CurrentTextElement = CurrentTextElement
+        this.clear()
+    }
+
+    clear() {
+        this.current = ""
+        this.previous = ""
+        this.operation = undefined
+    }
+
+
+    delete() {
+        this.current = this.current.toString().slice(0, -1)
+    }
+    
+    appendNumber(number) {
+        if (number === "." && this.current.includes(".")) return
+        this.current = this.current.toString() + number.toString()
+    }
+
+    chooseOperation(operation) {
+        if (this.current === "") return
+        if (this.previous !== "") {
+            this.compute()
         }
-        else if (buttontext == "C") {
-            screenValue = "";
-            screen.value = screenValue;
+        this.operation = operation
+        this.previous = this.current
+        this.current = ""
+
+    }
+
+    compute() {
+        let computation
+        const prev = parseFloat(this.previous)
+        const curr = parseFloat(this.current)
+        if (isNaN(prev) || isNaN(curr)) return
+        switch (this.operation) {
+            case "+":
+                computation = prev + curr
+                break
+            case "-":
+                computation = prev - curr
+                break
+            case "x":
+                computation = prev * curr
+                break
+            case "÷":
+                computation = prev / curr
+                break
+            default:
+                return
         }
-        else if (buttontext == "CE") {
-            screenValue = "";
-            screen.value = screenValue;
+        this.current = computation
+        this.operation = undefined
+        this.previous = ""
+    }
+
+    getDisplayNumber(number) {
+        const stringNumber = number.toString()
+        const integerDigits = parseFloat(stringNumber.split("."[0]))
+        const decimalDigits = stringNumber.split(".")[1]
+        let integerDisplay
+        if (isNaN(integerDigits)) {
+            integerDisplay = ""
+        } else {
+            integerDisplay = integerDigits.toLocaleString("en", {
+            maximumFractionDigits : 0 })
         }
-        else if (buttontext == "=") {
-            screen.value = eval(screenValue);
+        if (decimalDigits != null) {
+            return `${integerDisplay}.${decimalDigits}`
+        } else{
+            return integerDisplay
         }
-        else {
-            screenValue += buttontext;
-            screen.value = screenValue;
+    }
+
+    updateDisplay() {
+        this.CurrentTextElement.innerText = this.getDisplayNumber(this.current) 
+        if (this.operation != null){
+            this.previousTextElement.innerText = 
+                `${this.getDisplayNumber(this.previous)} ${this.operation}`
+        } else{
+            this.previousTextElement.innerText = ""
         }
-    })
+    }
 }
+
+//definitions of consts
+const numberButtons = document.querySelectorAll("[data-number]")
+const oparationButtons = document.querySelectorAll("[data-oparation]")
+const equalsButton = document.querySelector("[data-equals]")
+const deleteButton = document.querySelector("[data-delete]")
+const allclearButtons = document.querySelectorAll("[data-all-clear]")
+const previousTextElement = document.querySelector("[data-previous]")
+const CurrentTextElement = document.querySelector("[data-current]")
+
+const calculator = new Calculator(previousTextElement,CurrentTextElement)
+
+numberButtons.forEach(button => {
+    button.addEventListener("click", () =>{
+        calculator.appendNumber(button.innerText)
+        calculator.updateDisplay()
+    })
+})
+
+oparationButtons.forEach(button => {
+    button.addEventListener("click", () =>{
+        calculator.chooseOperation(button.innerText)
+        calculator.updateDisplay()
+    })
+})
+
+equalsButton.addEventListener("click", button =>{
+    calculator.compute()
+    calculator.updateDisplay()
+})
+
+allclearButtons.addEventListener("click", button =>{
+    calculator.clear()
+    calculator.updateDisplay()
+})
+
+deleteButton.addEventListener("click", button =>{
+    calculator.delete()
+    calculator.updateDisplay()
+})
