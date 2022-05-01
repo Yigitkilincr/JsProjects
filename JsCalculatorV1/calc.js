@@ -1,28 +1,29 @@
 console.log("My First Js Project...")
 
+// calculator class has defined.
 class Calculator{
     constructor(previousTextElement, CurrentTextElement) {
         this.previousTextElement = previousTextElement
         this.CurrentTextElement = CurrentTextElement
         this.clear()
     }
-
+    // clear func has defined.
     clear() {
         this.current = ""
         this.previous = ""
         this.operation = undefined
     }
 
-
+    // delete func has defined.
     delete() {
         this.current = this.current.toString().slice(0, -1)
     }
-    
+    // simple func for numbers on current and previous screen has defined.
     appendNumber(number) {
         if (number === "." && this.current.includes(".")) return
         this.current = this.current.toString() + number.toString()
     }
-
+    
     chooseOperation(operation) {
         if (this.current === "") return
         if (this.previous !== "") {
@@ -33,7 +34,7 @@ class Calculator{
         this.current = ""
 
     }
-
+    // compute func is for operations in calcualtor
     compute() {
         let computation
         const prev = parseFloat(this.previous)
@@ -51,6 +52,9 @@ class Calculator{
                 break
             case "÷":
                 computation = prev / curr
+                break
+            case "^":
+                computation = prev ** curr
                 break
             default:
                 return
@@ -77,7 +81,7 @@ class Calculator{
             return integerDisplay
         }
     }
-
+    // updateDisplay func is for using display numbers on screen
     updateDisplay() {
         this.CurrentTextElement.innerText = this.getDisplayNumber(this.current) 
         if (this.operation != null){
@@ -99,7 +103,7 @@ const previousTextElement = document.querySelector("[data-previous]")
 const CurrentTextElement = document.querySelector("[data-current]")
 
 const calculator = new Calculator(previousTextElement,CurrentTextElement)
-
+//next lines is for connecting html file and our defined calculator class
 numberButtons.forEach(button => {
     button.addEventListener("click", () =>{
         calculator.appendNumber(button.innerText)
@@ -119,10 +123,13 @@ equalsButton.addEventListener("click", button =>{
     calculator.updateDisplay()
 })
 
-allclearButtons.addEventListener("click", button =>{
-    calculator.clear()
-    calculator.updateDisplay()
+allclearButtons.forEach(button => {
+    button.addEventListener("click", () =>{
+        calculator.clear()
+        calculator.updateDisplay()
+    })
 })
+
 
 deleteButton.addEventListener("click", button =>{
     calculator.delete()
