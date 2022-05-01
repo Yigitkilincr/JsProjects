@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Calculator v1</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <script src="https://kit.fontawesome.com/026ea25ec4.js" crossorigin="anonymous"></script>
+    <div class="container">
+        <div class="calculator">
+            <div class="output">
+                <div data-previous class="previous"></div>
+                <div data-current class="current"></div>
+            </div>
+            
+            <!-- Calc table start -->
+            <table>
+                <tr>
+                    <td><button data-oparation>^</button></td>
+                    <td><button style="background-color: red; font-weight: bold; color: white;" data-all-clear>CE</button></td>
+                    <td><button style="background-color: blue; font-weight: bold; color:white" data-all-clear>C</button></td>
+                    <td><button data-delete><i class="fas fa-backspace"></i></button></td>
+                </tr>
+                <tr>
+                    <td><button data-number>7</button></td>
+                    <td><button data-number>8</button></td>
+                    <td><button data-number>9</button></td>
+                    <td><button data-oparation>x</button></td>
+                </tr>
+                <tr>
+                    <td><button data-number>4</button></td>
+                    <td><button data-number>5</button></td>
+                    <td><button data-number>6</button></td>
+                    <td><button data-oparation>-</button></td>
+                </tr>
+                <tr>
+                    <td><button data-number>1</button></td>
+                    <td><button data-number>2</button></td>
+                    <td><button data-number>3</button></td>
+                    <td><button data-oparation>+</button></td>
+                </tr>
+                <tr>
+                    <td><button data-number>0</button></td>
+                    <td><button data-number>.</button></td>
+                    <td><button data-oparation>÷</button></td>
+                    <td><button data-equals style="background-color: aqua; font-weight: bold; color: black;">=</button></td>
+                </tr>
+            </table>
+            
+            <!-- Calc table end -->
+        </div>
+    </div>
+</body>
+<script src="calc.js"></script>
+</html>
