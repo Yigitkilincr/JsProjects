@@ -76,9 +76,11 @@ button{
 }
 .previous{
     color: #251D3A;
-    font-size: 1rem;
+    font-size: 1.5rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .current{
     color: #251D3A;
-    font-size: 1.75rem;
+    font-size: 2.25rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
